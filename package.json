@@ -12,6 +12,7 @@
     "@chakra-ui/react": "^1.6.0",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "@hookform/resolvers": "^2.4.0",
     "copy-to-clipboard": "^3.3.1",
     "escape-html": "^1.0.3",
     "escape-string-regexp": "^5.0.0",

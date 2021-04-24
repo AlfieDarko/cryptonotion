@@ -22,20 +22,29 @@ import { ArrowForwardIcon } from "@chakra-ui/icons";
 import copy from "copy-to-clipboard";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
+import { yupResolver } from "@hookform/resolvers/yup";
 
-let schema = yup.object().shape({});
+let schema = yup.object().shape({
+  exchange: yup.string().required(),
+  ticker_pair_one: yup.string().required(),
+  ticker_pair_two: yup.string().required(),
+  is_transparent: yup.boolean().oneOf([true, false]),
+  dark_mode: yup.boolean().oneOf([true, false]),
+});
+
 export const NotionForm = () => {
   const {
     register,
     handleSubmit,
     getValues,
     formState: { errors },
-  } = useForm();
+  } = useForm({ resolver: yupResolver(schema) });
   const router = useRouter();
-  console.log(router);
+
   const [isLoading, setIsLoading] = useState(false);
   const [widgetUrl, setWidgetUrl] = useState();
   const onSubmit = (e) => {
+    console.log(getValues(), errors);
     const {
       exchange,
       ticker_pair_one,
@@ -43,15 +52,23 @@ export const NotionForm = () => {
       is_transparent,
       dark_mode,
     } = getValues();
-    e.preventDefault();
+
     setIsLoading(true);
-    setInterval(() => setIsLoading(false), 2500);
     setWidgetUrl(
-      `widget/${exchange}/${ticker_pair_one}:${ticker_pair_two}/325/${is_transparent}/${
+      `${
+        window.location.href
+      }widget/${exchange}/${ticker_pair_one}${ticker_pair_two}/325/${is_transparent}/${
         dark_mode ? "dark" : "light"
       }`
     );
-    copy(widgetUrl);
+    copy(
+      `${
+        window.location.href
+      }widget/${exchange}/${ticker_pair_one}${ticker_pair_two}/325/${is_transparent}/${
+        dark_mode ? "dark" : "light"
+      }`
+    );
+    setInterval(() => setIsLoading(false), 2500);
   };
   return (
     <>
@@ -271,8 +288,8 @@ export const NotionForm = () => {
               mx="auto"
             >
               <Button
-                as="a"
-                href="#"
+                // as="a"
+                // href="#"
                 size="lg"
                 h="16"
                 px="10"
@@ -282,33 +299,33 @@ export const NotionForm = () => {
                 type="submit"
                 isLoading={isLoading}
                 bgGradient="linear(to-r, purple.300,red.200)"
-                onClick={(e) => {
-                  console.log(getValues());
-                  const {
-                    exchange,
-                    ticker_pair_one,
-                    ticker_pair_two,
-                    is_transparent,
-                    dark_mode,
-                  } = getValues();
-                  e.preventDefault();
-                  setIsLoading(true);
-                  setWidgetUrl(
-                    `${
-                      window.location.href
-                    }widget/${exchange}/${ticker_pair_one}${ticker_pair_two}/325/${is_transparent}/${
-                      dark_mode ? "dark" : "light"
-                    }`
-                  );
-                  copy(
-                    `${
-                      window.location.href
-                    }widget/${exchange}/${ticker_pair_one}${ticker_pair_two}/325/${is_transparent}/${
-                      dark_mode ? "dark" : "light"
-                    }`
-                  );
-                  setInterval(() => setIsLoading(false), 2500);
-                }}
+                // onClick={(e) => {
+                //   console.log(getValues(), errors);
+                //   const {
+                //     exchange,
+                //     ticker_pair_one,
+                //     ticker_pair_two,
+                //     is_transparent,
+                //     dark_mode,
+                //   } = getValues();
+                //   e.preventDefault();
+                //   setIsLoading(true);
+                //   setWidgetUrl(
+                //     `${
+                //       window.location.href
+                //     }widget/${exchange}/${ticker_pair_one}${ticker_pair_two}/325/${is_transparent}/${
+                //       dark_mode ? "dark" : "light"
+                //     }`
+                //   );
+                //   copy(
+                //     `${
+                //       window.location.href
+                //     }widget/${exchange}/${ticker_pair_one}${ticker_pair_two}/325/${is_transparent}/${
+                //       dark_mode ? "dark" : "light"
+                //     }`
+                //   );
+                //   setInterval(() => setIsLoading(false), 2500);
+                // }}
               >
                 {widgetUrl
                   ? "Copied to Clipboard! 📋"
