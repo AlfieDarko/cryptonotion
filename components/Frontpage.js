@@ -67,7 +67,10 @@ export const Frontpage = () => {
           </Box>
         </Box>
       </Box>
-      <Box mb={32} as="section">
+      <Box pl="20px" w="180px" margin="0 auto">
+        <img src="/cryptowidgets.co.png" alt="" />
+      </Box>
+      <Box mb={48} as="section">
         <Box
           maxW="3xl"
           mx="auto"
