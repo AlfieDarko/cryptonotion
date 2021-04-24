@@ -1,5 +1,3 @@
-import * as React from "react";
-
 import {
   Box,
   Button,
@@ -8,6 +6,7 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
+import React, { useEffect } from "react";
 
 import { animateScroll as scroll } from "react-scroll";
 
@@ -16,46 +15,56 @@ function scrollMoreDown300() {
 }
 
 export const Frontpage = () => {
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.setAttribute("id", "scripty");
+    script.src =
+      "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js";
+    script.async = true;
+    script.innerHTML = JSON.stringify({
+      symbols: [
+        {
+          proName: "BITSTAMP:BTCUSD",
+          title: "BTC/USD",
+        },
+        {
+          proName: "BITSTAMP:ETHUSD",
+          title: "ETH/USD",
+        },
+        {
+          description: "DOT/USD",
+          proName: "BINANCE:DOTUSD",
+        },
+        {
+          description: "LINK/USD",
+          proName: "KRAKEN:LINKUSD",
+        },
+        {
+          description: "DOGE/USD",
+          proName: "BINGBON:DOGEUSDT",
+        },
+      ],
+      showSymbolLogo: true,
+      colorTheme: "light",
+      isTransparent: true,
+      displayMode: "regular",
+      locale: "uk",
+    });
+
+    const current = document.getElementById("toptracker");
+
+    if (current.children.length > 1) {
+      current.replaceChild(script, current.lastChild);
+    }
+    current.appendChild(script);
+  }, []);
   return (
     <>
-      <Box mb={32} width="100%" height="32px">
-        <Box mb={12} className="tradingview-widget-container">
-          <div className="tradingview-widget-container__widget"></div>
-          <script
-            type="text/javascript"
-            src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js"
-            async
-          >
-            {JSON.stringify({
-              symbols: [
-                {
-                  proName: "BITSTAMP:BTCUSD",
-                  title: "BTC/USD",
-                },
-                {
-                  proName: "BITSTAMP:ETHUSD",
-                  title: "ETH/USD",
-                },
-                {
-                  description: "DOT/USD",
-                  proName: "BINANCE:DOTUSD",
-                },
-                {
-                  description: "LINK/USD",
-                  proName: "KRAKEN:LINKUSD",
-                },
-                {
-                  description: "DOGE/USD",
-                  proName: "BINGBON:DOGEUSDT",
-                },
-              ],
-              showSymbolLogo: true,
-              colorTheme: "light",
-              isTransparent: true,
-              displayMode: "regular",
-              locale: "uk",
-            })}
-          </script>
+      <Box mb={32} id="toptracker">
+        <Box width="100%" height="32px">
+          <Box mb={-4} className="tradingview-widget-container">
+            <div className="tradingview-widget-container__widget"></div>
+          </Box>
         </Box>
       </Box>
       <Box mb={32} as="section">
