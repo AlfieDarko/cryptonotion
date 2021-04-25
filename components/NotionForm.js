@@ -69,7 +69,7 @@ export const NotionForm = () => {
         dark_mode ? "dark" : "light"
       }`
     );
-    Mixpanel.track("Widet Generator Button Click", true);
+    Mixpanel.track("Widet Generator Button Click", "true");
     setInterval(() => setIsLoading(false), 2500);
   };
   return (

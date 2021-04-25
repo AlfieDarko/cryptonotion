@@ -5,7 +5,7 @@ import Head from "next/head";
 import { Mixpanel } from "../mixpanel";
 
 function MyApp({ Component, pageProps }) {
-  Mixpanel.track("Application initiated", true);
+  Mixpanel.track("Application initiated", "true");
 
   return (
     <>
