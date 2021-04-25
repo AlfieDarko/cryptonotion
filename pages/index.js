@@ -20,12 +20,12 @@ import React from "react";
 
 // import styles from "../styles/Home.module.css";
 
-const SendSats = () => {
+const SendBTC = () => {
   return (
     <Popover placement="top-start">
       <PopoverTrigger>
         <Button colorScheme="green" size="sm">
-          Send Some Sats
+          Send Some BTC
         </Button>
       </PopoverTrigger>
       <PopoverContent>
@@ -77,7 +77,7 @@ export default function Home() {
           <Text fontWeight="semibold" fontSize="xs" mb={4}>
             If this helped you out, feel free to send beer money! 🍻
           </Text>
-          <SendSats /> || <SendERC20 />
+          <SendBTC /> || <SendERC20 />
         </Box>
       </footer>
     </div>
