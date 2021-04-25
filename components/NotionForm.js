@@ -19,6 +19,7 @@ import {
 import React, { useState } from "react";
 
 import { ArrowForwardIcon } from "@chakra-ui/icons";
+import { Mixpanel } from "../mixpanel";
 import copy from "copy-to-clipboard";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
@@ -68,6 +69,7 @@ export const NotionForm = () => {
         dark_mode ? "dark" : "light"
       }`
     );
+    Mixpanel.track("Widet Generator Button Click", true);
     setInterval(() => setIsLoading(false), 2500);
   };
   return (
@@ -299,33 +301,6 @@ export const NotionForm = () => {
                 type="submit"
                 isLoading={isLoading}
                 bgGradient="linear(to-r, purple.300,red.200)"
-                // onClick={(e) => {
-                //   console.log(getValues(), errors);
-                //   const {
-                //     exchange,
-                //     ticker_pair_one,
-                //     ticker_pair_two,
-                //     is_transparent,
-                //     dark_mode,
-                //   } = getValues();
-                //   e.preventDefault();
-                //   setIsLoading(true);
-                //   setWidgetUrl(
-                //     `${
-                //       window.location.href
-                //     }widget/${exchange}/${ticker_pair_one}${ticker_pair_two}/325/${is_transparent}/${
-                //       dark_mode ? "dark" : "light"
-                //     }`
-                //   );
-                //   copy(
-                //     `${
-                //       window.location.href
-                //     }widget/${exchange}/${ticker_pair_one}${ticker_pair_two}/325/${is_transparent}/${
-                //       dark_mode ? "dark" : "light"
-                //     }`
-                //   );
-                //   setInterval(() => setIsLoading(false), 2500);
-                // }}
               >
                 {widgetUrl
                   ? "Copied to Clipboard! 📋"
@@ -345,7 +320,6 @@ export const NotionForm = () => {
                   size="xs"
                   rightIcon={<ArrowForwardIcon />}
                 >
-                  {console.log(widgetUrl)}
                   <a href={widgetUrl}>View My Widget!</a>
                 </Button>
               </Box>
