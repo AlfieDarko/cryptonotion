@@ -223,6 +223,10 @@ export const NotionForm = () => {
                     Binance
                   </option>
                   <option value="COINBASE">Coinbase</option>
+                  <option value="UNISWAP">Uniswap</option>
+                  <option value="SUSHISWAP">Sushiswap</option>
+                  <option value="BITFINEX">Bitfinex</option>
+                  <option value="HUOBI">Huobi</option>
                   <option value="KUCOIN">Kucoin</option>
                   <option value="GEMINI">Gemini</option>
                   <option value="FTX">FTX</option>
