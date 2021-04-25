@@ -142,8 +142,8 @@ export const NotionForm = () => {
                 >
                   <option value="USDT">USDT</option>
                   <option value="USD">USD</option>
-                  <option value="USD">EUR</option>
-                  <option value="USD">GBP</option>
+                  <option value="EUR">EUR</option>
+                  <option value="GBP">GBP</option>
                   <option value="BTC">BTC</option>
                   <option value="ETH">ETH</option>
                 </Select>
