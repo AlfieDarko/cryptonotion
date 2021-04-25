@@ -19,7 +19,6 @@ import {
 import React, { useState } from "react";
 
 import { ArrowForwardIcon } from "@chakra-ui/icons";
-import { Mixpanel } from "../mixpanel";
 import copy from "copy-to-clipboard";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
@@ -69,7 +68,6 @@ export const NotionForm = () => {
         dark_mode ? "dark" : "light"
       }`
     );
-    Mixpanel.track("Widet Generator Button Click", "true");
     setInterval(() => setIsLoading(false), 2500);
   };
   return (

@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 
 /* eslint-disable react/no-danger */
 /* eslint-disable react/jsx-filename-extension */
-import { Mixpanel } from "../../../../../../../mixpanel";
 import { useRouter } from "next/router";
 
 export default function Widget() {
@@ -11,7 +10,6 @@ export default function Widget() {
   const { pair, exchange, width, theme, isTransparent } = router.query;
   const isTransparentTrue = isTransparent === "true";
 
-  Mixpanel.track("Widget Loaded", { pair, exchange });
   useEffect(() => {
     const script = document.createElement("script");
     script.setAttribute("id", "scripty");
